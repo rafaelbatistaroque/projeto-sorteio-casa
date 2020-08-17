@@ -1,5 +1,5 @@
-﻿using MinhaCasa.Domain.NaoContemplados.ValuesObjects;
-using MinhaCasa.Shared.Enums;
+﻿using MinhaCasa.Domain.Enums;
+using MinhaCasa.Domain.NaoContemplados.ValuesObjects;
 using System;
 
 namespace MinhaCasa.Domain.NaoContemplados.Entities
@@ -13,6 +13,8 @@ namespace MinhaCasa.Domain.NaoContemplados.Entities
         public Guid FamiliaId { get; private set; }
 
         public virtual Familia Familia { get; private set; }
+
+        private Pessoa() { }
 
         public Pessoa(string nome, ETipoVinculoFamiliar tipoVinculoFamiliar, DateTime dataNascimento, Renda renda, Guid familiaId)
         {

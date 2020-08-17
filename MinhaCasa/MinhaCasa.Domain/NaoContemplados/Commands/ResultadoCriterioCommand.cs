@@ -1,20 +1,17 @@
-﻿using MinhaCasa.Domain.NaoContemplados.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MinhaCasa.Domain.NaoContemplados.Interfaces;
 
 namespace MinhaCasa.Domain.NaoContemplados.Commands
 {
     public class ResultadoCriterioCommand : ICommandResult
     {
-        public int Pontuacao { get;  set; }
-        public int QuantidadeCriteriosAtendidos { get;  set; }
-        public bool Sucesso { get;  set; }
-        public string MensagemErro { get; set; }
-     
-        public ResultadoCriterioCommand(){}
+        public int Pontuacao { get; set; }
+        public int QuantidadeCriteriosAtendidos { get; set; }
+        public bool Sucesso { get; set; }
+        public object MensagemErro { get; set; }
 
-        public ResultadoCriterioCommand(int pontuacao, int quantidadeCriteriosAtendidos, bool sucesso, string mensagemErro = null)
+        public ResultadoCriterioCommand() { }
+
+        public ResultadoCriterioCommand(int pontuacao, int quantidadeCriteriosAtendidos, bool sucesso, object mensagemErro = null)
         {
             Pontuacao = pontuacao;
             QuantidadeCriteriosAtendidos = quantidadeCriteriosAtendidos;

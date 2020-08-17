@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MinhaCasa.Shared.Enums
+﻿namespace MinhaCasa.Domain.Enums
 {
     public enum ETipoVinculoFamiliar
     {

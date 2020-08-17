@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCasa.Domain", "MinhaCasa.Domain\MinhaCasa.Domain.csproj", "{20B96AFF-A5FC-4091-BD82-01F4DE3B9C1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinhaCasa.Domain", "MinhaCasa.Domain\MinhaCasa.Domain.csproj", "{20B96AFF-A5FC-4091-BD82-01F4DE3B9C1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCasa.Infra", "MinhaCasa.Infra\MinhaCasa.Infra.csproj", "{AA3C6EC3-12C2-40EA-A17F-024305CFBB49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinhaCasa.Infra", "MinhaCasa.Infra\MinhaCasa.Infra.csproj", "{AA3C6EC3-12C2-40EA-A17F-024305CFBB49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCasa.API", "MinhaCasa.API\MinhaCasa.API.csproj", "{A62B0BE0-3133-49A7-A81B-EB5C907BBE58}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCasa.Shared", "MinhaCasa.Shared\MinhaCasa.Shared.csproj", "{19399801-20E7-49DB-A842-57D2C06AABCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinhaCasa.API", "MinhaCasa.API\MinhaCasa.API.csproj", "{A62B0BE0-3133-49A7-A81B-EB5C907BBE58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{A62B0BE0-3133-49A7-A81B-EB5C907BBE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A62B0BE0-3133-49A7-A81B-EB5C907BBE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A62B0BE0-3133-49A7-A81B-EB5C907BBE58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19399801-20E7-49DB-A842-57D2C06AABCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19399801-20E7-49DB-A842-57D2C06AABCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19399801-20E7-49DB-A842-57D2C06AABCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19399801-20E7-49DB-A842-57D2C06AABCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

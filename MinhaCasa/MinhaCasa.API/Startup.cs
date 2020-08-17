@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using MinhaCasa.Domain.NaoContemplados.Contracts;
+using MinhaCasa.Domain.NaoContemplados.Handlers;
+using MinhaCasa.Domain.NaoContemplados.Repositories;
+using MinhaCasa.Domain.NaoContemplados.Services.CriteriosSelecao;
+using MinhaCasa.Infra.Context;
+using MinhaCasa.Infra.Repositories;
 
 namespace MinhaCasa.API
 {
@@ -26,6 +25,12 @@ namespace MinhaCasa.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<DataContext>();
+            services.AddTransient<FiltroNaoContempladosHandler, FiltroNaoContempladosHandler>();
+            services.AddTransient<INaoContempladosRepository, NaoContempladosRepository>();
+            services.AddTransient<IRendaTotalCriterio, RendaTotalCriterio>();
+            services.AddTransient<IDependenteCriterio, DependenteCriterio>();
+            services.AddTransient<IPretendenteCriterio, PretendenteCriterio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +44,10 @@ namespace MinhaCasa.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseAuthorization();
 

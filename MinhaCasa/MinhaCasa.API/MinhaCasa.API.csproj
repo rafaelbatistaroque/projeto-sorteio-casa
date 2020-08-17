@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MinhaCasa.Domain\MinhaCasa.Domain.csproj" />
+    <ProjectReference Include="..\MinhaCasa.Infra\MinhaCasa.Infra.csproj" />
   </ItemGroup>
 
 

@@ -1,4 +1,4 @@
-﻿namespace MinhaCasa.Shared.Enums
+﻿namespace MinhaCasa.Domain.Enums
 {
     public enum EStatusFamilia
     {

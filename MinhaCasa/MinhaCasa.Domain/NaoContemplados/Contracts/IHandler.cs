@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using MinhaCasa.Domain.NaoContemplados.Interfaces;
 
 namespace MinhaCasa.Domain.NaoContemplados.Contracts
 {
-    public interface IHandler<T> where T : ICommandBase 
+    public interface IHandler<T> where T : ICommandBase
     {
-        ICommandResult CalcularCriterio(T command);
+        ICommandResult Tratar(T command);
     }
 }

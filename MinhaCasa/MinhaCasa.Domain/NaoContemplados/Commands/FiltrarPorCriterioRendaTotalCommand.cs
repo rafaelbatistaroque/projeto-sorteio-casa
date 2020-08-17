@@ -1,7 +1,7 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
+using MinhaCasa.Domain.Enums;
 using MinhaCasa.Domain.NaoContemplados.Contracts;
-using MinhaCasa.Domain.NaoContemplados.ValuesObjects;
 using System;
 
 namespace MinhaCasa.Domain.NaoContemplados.Commands
@@ -10,17 +10,15 @@ namespace MinhaCasa.Domain.NaoContemplados.Commands
     {
         public Guid Id { get; set; }
         public decimal RendaTotal { get; set; }
-        public int Pontuacao { get; set; }
-        public int QuantidadeCriteriosAtendidos { get; set; }
+        public ECategoriaRenda CategoriaRenda { get; set; }
 
-        public FiltrarPorCriterioRendaTotalCommand(){}
+        public FiltrarPorCriterioRendaTotalCommand() { }
 
-        public FiltrarPorCriterioRendaTotalCommand(Guid id, decimal rendaTotal, int pontuacao, int quantidadeCriteriosAtendidos)
+        public FiltrarPorCriterioRendaTotalCommand(Guid id, decimal rendaTotal, ECategoriaRenda categoriaRenda)
         {
             Id = id;
             RendaTotal = rendaTotal;
-            Pontuacao = pontuacao;
-            QuantidadeCriteriosAtendidos = quantidadeCriteriosAtendidos;
+            CategoriaRenda = categoriaRenda;
         }
 
         public void Validar()
@@ -28,7 +26,8 @@ namespace MinhaCasa.Domain.NaoContemplados.Commands
             AddNotifications(
                 new Contract()
                 .Requires()
-                .IsGreaterOrEqualsThan(RendaTotal, 0, nameof(RendaTotal), "O Total da renda não pode ser valor meno que zero."));
+                .IsGreaterOrEqualsThan(RendaTotal, 0, nameof(RendaTotal), "O Total da renda não pode ser valor meno que zero.")
+                .IsLowerOrEqualsThan(RendaTotal, 2000, nameof(RendaTotal), "O Total da renda não pode ser maior que R$2000,00 reais."));
         }
     }
 }
