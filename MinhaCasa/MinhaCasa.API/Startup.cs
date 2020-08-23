@@ -7,6 +7,7 @@ using MinhaCasa.Domain.NaoContemplados.Contracts;
 using MinhaCasa.Domain.NaoContemplados.Handlers;
 using MinhaCasa.Domain.NaoContemplados.Repositories;
 using MinhaCasa.Domain.NaoContemplados.Services.CriteriosSelecao;
+using MinhaCasa.Domain.NaoContemplados.Services.TipoCategorias;
 using MinhaCasa.Infra.Context;
 using MinhaCasa.Infra.Repositories;
 
@@ -27,10 +28,16 @@ namespace MinhaCasa.API
             services.AddControllers();
             services.AddDbContext<DataContext>();
             services.AddTransient<FiltroNaoContempladosHandler, FiltroNaoContempladosHandler>();
+            services.AddTransient<CRUDNaoContempladosHandler, CRUDNaoContempladosHandler>();
             services.AddTransient<INaoContempladosRepository, NaoContempladosRepository>();
             services.AddTransient<IRendaTotalCriterio, RendaTotalCriterio>();
             services.AddTransient<IDependenteCriterio, DependenteCriterio>();
             services.AddTransient<IPretendenteCriterio, PretendenteCriterio>();
+            services.AddTransient<ICategoria, Categoria>();
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

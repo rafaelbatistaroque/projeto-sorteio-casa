@@ -10,8 +10,8 @@ using MinhaCasa.Infra.Context;
 namespace MinhaCasa.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200817070914_inicial")]
-    partial class inicial
+    [Migration("20200819202104_inical")]
+    partial class inical
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,25 +27,20 @@ namespace MinhaCasa.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<short>("CategoriaDependente")
-                        .HasColumnType("SMALLINT");
+                    b.Property<int>("CategoriaDependente")
+                        .HasColumnType("int");
 
-                    b.Property<short>("CategoriaIdadePretendente")
-                        .HasColumnType("SMALLINT");
+                    b.Property<int>("CategoriaIdadePretendente")
+                        .HasColumnType("int");
 
-                    b.Property<short>("CategoriaRenda")
-                        .HasColumnType("SMALLINT");
+                    b.Property<int>("CategoriaRenda")
+                        .HasColumnType("int");
 
                     b.Property<int>("Pontuacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasMaxLength(2)
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
-                    b.Property<short>("QuantidadeCriteriosAtendidos")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("SMALLINT")
-                        .HasDefaultValue((short)0);
+                    b.Property<int>("QuantidadeCriteriosAtendidos")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -68,17 +63,14 @@ namespace MinhaCasa.Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("TipoVinculoFamiliar")
-                        .HasColumnType("SMALLINT");
+                    b.Property<int>("TipoVinculoFamiliar")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FamiliaId");
-
-                    b.HasIndex("Id");
 
                     b.ToTable("Pessoa");
                 });
@@ -118,9 +110,9 @@ namespace MinhaCasa.Infra.Migrations
 
                             b1.HasKey("PessoaId");
 
-                            b1.ToTable("Rendas");
+                            b1.ToTable("Pessoa");
 
-                            b1.WithOwner()
+                            b1.WithOwner("Pessoa")
                                 .HasForeignKey("PessoaId");
                         });
                 });

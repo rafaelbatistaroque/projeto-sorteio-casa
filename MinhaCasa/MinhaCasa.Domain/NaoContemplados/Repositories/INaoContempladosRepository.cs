@@ -7,5 +7,7 @@ namespace MinhaCasa.Domain.NaoContemplados.Repositories
     {
         IQueryable<Familia> Obter();
         IQueryable<Familia> Obter(int quantidadeContemplados);
+
+        void CriarFamilia(Familia familia);
     }
 }

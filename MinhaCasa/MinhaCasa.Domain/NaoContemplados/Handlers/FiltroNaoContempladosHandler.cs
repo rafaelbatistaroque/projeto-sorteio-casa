@@ -10,8 +10,8 @@ namespace MinhaCasa.Domain.NaoContemplados.Handlers
 {
     public class FiltroNaoContempladosHandler :
         IHandler<FiltrarPorCriterioRendaTotalCommand>,
-        IHandler<FiltrarPorCriterioPretendente>,
-        IHandler<FiltrarPorCriterioDependente>
+        IHandler<FiltrarPorCriterioPretendenteCommand>,
+        IHandler<FiltrarPorCriterioDependenteCommand>
     {
         private readonly IRendaTotalCriterio _rendaTotalCriterio;
         private readonly IPretendenteCriterio _pretendenteCriterio;
@@ -24,65 +24,65 @@ namespace MinhaCasa.Domain.NaoContemplados.Handlers
             _dependendeCriterio = dependendeCriterio;
         }
 
-        public ICommandResult Tratar(FiltrarPorCriterioRendaTotalCommand command)
+        public IResultadoCommand Tratar(FiltrarPorCriterioRendaTotalCommand command)
         {
             command.Validar();
             if (command.Invalid)
-                return new ResultadoCriterioCommand(0, 0, false, command.Notifications);
+                return new ResultadoCommand(0, 0, false, command.Notifications);
 
-            var tratamentoCriterios = new Dictionary<ECategoriaRenda, Func<ResultadoCriterioCommand, ICommandResult>>()
+            var tratamentoCriterios = new Dictionary<ECategoriaRenda, Func<ResultadoCommand, IResultadoCommand>>()
             {
                 { ECategoriaRenda.RendaAte900, _rendaTotalCriterio.TratarRendaFamiliarAte900Reais },
                 { ECategoriaRenda.RendaEntre901A1500, _rendaTotalCriterio.TratarRendaFamiliarEntre1501A2000Reais},
                 { ECategoriaRenda.RendaEntre1501A2000, _rendaTotalCriterio.TratarRendaFamiliarEntre901A1500Reais }
             };
 
-            command.CategoriaRenda = _rendaTotalCriterio.ObterCategoriaRenda(command.RendaTotal);
-            var resultado = (ResultadoCriterioCommand)tratamentoCriterios[command.CategoriaRenda].Invoke(new ResultadoCriterioCommand());
+            //command.CategoriaRenda = _rendaTotalCriterio.ObterCategoriaRenda(command.RendaTotal);
+            var resultado = (ResultadoCommand)tratamentoCriterios[command.CategoriaRenda].Invoke(new ResultadoCommand());
 
             resultado.Sucesso = true;
 
             return resultado;
         }
 
-        public ICommandResult Tratar(FiltrarPorCriterioPretendente command)
+        public IResultadoCommand Tratar(FiltrarPorCriterioPretendenteCommand command)
         {
             command.Validar();
             if (command.Invalid)
-                return new ResultadoCriterioCommand(0, 0, false, command.Notifications);
+                return new ResultadoCommand(0, 0, false, command.Notifications);
 
-            var tratamentoCriterios = new Dictionary<ECategoriaIdadePretendente, Func<ResultadoCriterioCommand, ICommandResult>>()
+            var tratamentoCriterios = new Dictionary<ECategoriaIdadePretendente, Func<ResultadoCommand, IResultadoCommand>>()
             {
                 { ECategoriaIdadePretendente.IdadeAbaixo30Anos, _pretendenteCriterio.TratarIdadeAbaixo30Anos },
                 { ECategoriaIdadePretendente.IdadeEntre30E44Anos, _pretendenteCriterio.TratarIdadeEntre30AE44Anos },
                 { ECategoriaIdadePretendente.IdadeIgualOuMaior45Anos, _pretendenteCriterio.TratarIdadeIgualOuAcima45Anos }
             };
 
-            var pretendente = command.Pessoas.SingleOrDefault(p => p.TipoVinculoFamiliar.Equals(ETipoVinculoFamiliar.Pretendente));
-            command.CategoriaIdadePretendente = _pretendenteCriterio.ObterCategoriaIdadePretendente(pretendente.DataNascimento);
+            //var pretendente = command.Pessoas.SingleOrDefault(p => p.TipoVinculoFamiliar.Equals(ETipoVinculoFamiliar.Pretendente));
+            //command.CategoriaIdadePretendente = _pretendenteCriterio.ObterCategoriaIdadePretendente(pretendente.DataNascimento);
 
-            var resultado = (ResultadoCriterioCommand)tratamentoCriterios[command.CategoriaIdadePretendente].Invoke(new ResultadoCriterioCommand());
+            var resultado = (ResultadoCommand)tratamentoCriterios[command.CategoriaIdadePretendente].Invoke(new ResultadoCommand());
             resultado.Sucesso = true;
 
             return resultado;
         }
 
-        public ICommandResult Tratar(FiltrarPorCriterioDependente command)
+        public IResultadoCommand Tratar(FiltrarPorCriterioDependenteCommand command)
         {
             command.Validar();
             if (command.Invalid)
-                return new ResultadoCriterioCommand(0, 0, false, command.Notifications);
+                return new ResultadoCommand(0, 0, false, command.Notifications);
 
-            var tratamentoCriterios = new Dictionary<ECategoriaDependente, Func<ResultadoCriterioCommand, ICommandResult>>()
+            var tratamentoCriterios = new Dictionary<ECategoriaDependente, Func<ResultadoCommand, IResultadoCommand>>()
             {
                 { ECategoriaDependente.UmOuDois, _dependendeCriterio.TratarUmOuDoisDependentes },
                 { ECategoriaDependente.TresOuMais, _dependendeCriterio.TratarTresOuMaisDependentes },
             };
 
-            var dependentes = command.Pessoas.Where(x => x.TipoVinculoFamiliar.Equals(ETipoVinculoFamiliar.Dependente));
-            command.CategoriaDependente = _dependendeCriterio.ObterCategoriaDependente(dependentes);
+            //var dependentes = command.Pessoas.Where(x => x.TipoVinculoFamiliar.Equals(ETipoVinculoFamiliar.Dependente));
+            //command.CategoriaDependente = _dependendeCriterio.ObterCategoriaDependente(dependentes);
 
-            var resultado = (ResultadoCriterioCommand)tratamentoCriterios[command.CategoriaDependente].Invoke(new ResultadoCriterioCommand());
+            var resultado = (ResultadoCommand)tratamentoCriterios[command.CategoriaDependente].Invoke(new ResultadoCommand());
 
             return resultado;
         }

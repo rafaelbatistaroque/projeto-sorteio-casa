@@ -1,6 +1,6 @@
 ﻿namespace MinhaCasa.Domain.NaoContemplados.Contracts
 {
-    public interface ICommandBase
+    public interface IBaseCommand
     {
         void Validar();
     }

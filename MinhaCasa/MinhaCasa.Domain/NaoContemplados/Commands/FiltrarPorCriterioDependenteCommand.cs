@@ -9,15 +9,15 @@ using System.Linq;
 
 namespace MinhaCasa.Domain.NaoContemplados.Commands
 {
-    public class FiltrarPorCriterioDependente : Notifiable, ICommandBase
+    public class FiltrarPorCriterioDependenteCommand : Notifiable, IBaseCommand
     {
         public Guid Id { get; set; }
         public ECategoriaDependente CategoriaDependente { get; set; }
         public IEnumerable<Pessoa> Pessoas { get; set; }
 
-        public FiltrarPorCriterioDependente() { }
+        public FiltrarPorCriterioDependenteCommand() { }
 
-        public FiltrarPorCriterioDependente(Guid id, IEnumerable<Pessoa> pessoas, ECategoriaDependente categoriaDependente)
+        public FiltrarPorCriterioDependenteCommand(Guid id, IEnumerable<Pessoa> pessoas, ECategoriaDependente categoriaDependente)
         {
             Id = id;
             Pessoas = pessoas;

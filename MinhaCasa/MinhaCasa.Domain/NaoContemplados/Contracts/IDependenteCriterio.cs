@@ -6,11 +6,9 @@ using System.Collections.Generic;
 
 namespace MinhaCasa.Domain.NaoContemplados.Contracts
 {
-    public interface IDependenteCriterio : ICriterio
+    public interface IDependenteCriterio : IService
     {
-        ICommandResult TratarTresOuMaisDependentes(ResultadoCriterioCommand resultado);
-        ICommandResult TratarUmOuDoisDependentes(ResultadoCriterioCommand resultado);
-
-        ECategoriaDependente ObterCategoriaDependente(IEnumerable<Pessoa> pessoas);
+        IResultadoCommand TratarTresOuMaisDependentes(ResultadoCommand resultado);
+        IResultadoCommand TratarUmOuDoisDependentes(ResultadoCommand resultado);
     }
 }

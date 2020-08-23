@@ -10,10 +10,10 @@ namespace MinhaCasa.Infra.Context.Map
         {
             montar.ToTable("Pessoa");
             montar.HasKey(x => x.Id);
-            montar.HasIndex(x => x.Id);
-            montar.Property(x => x.Nome).IsRequired().HasColumnType("varchar(60)");
-            montar.Property(x => x.DataNascimento).IsRequired();
-            montar.Property(x => x.TipoVinculoFamiliar).IsRequired().HasColumnType("SMALLINT");
+            //montar.HasIndex(x => x.FamiliaId);
+            //montar.Property(x => x.Nome).IsRequired().HasColumnType("varchar(60)");
+            //montar.Property(x => x.DataNascimento).IsRequired();
+            //montar.Property(x => x.TipoVinculoFamiliar).IsRequired().HasColumnType("SMALLINT");
             montar.OwnsOne(x => x.Renda,
                 r =>
                 {

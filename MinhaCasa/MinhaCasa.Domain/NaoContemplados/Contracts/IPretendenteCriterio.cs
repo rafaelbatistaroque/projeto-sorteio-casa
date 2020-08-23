@@ -5,12 +5,10 @@ using System;
 
 namespace MinhaCasa.Domain.NaoContemplados.Contracts
 {
-    public interface IPretendenteCriterio : ICriterio
+    public interface IPretendenteCriterio : IService
     {
-        ICommandResult TratarIdadeIgualOuAcima45Anos(ResultadoCriterioCommand resultado);
-        ICommandResult TratarIdadeEntre30AE44Anos(ResultadoCriterioCommand resultado);
-        ICommandResult TratarIdadeAbaixo30Anos(ResultadoCriterioCommand resultado);
-
-        ECategoriaIdadePretendente ObterCategoriaIdadePretendente(DateTime dataNascimento);
+        IResultadoCommand TratarIdadeIgualOuAcima45Anos(ResultadoCommand resultado);
+        IResultadoCommand TratarIdadeEntre30AE44Anos(ResultadoCommand resultado);
+        IResultadoCommand TratarIdadeAbaixo30Anos(ResultadoCommand resultado);
     }
 }

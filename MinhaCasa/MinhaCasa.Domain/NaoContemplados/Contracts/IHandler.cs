@@ -2,8 +2,8 @@
 
 namespace MinhaCasa.Domain.NaoContemplados.Contracts
 {
-    public interface IHandler<T> where T : ICommandBase
+    public interface IHandler<T> where T : IBaseCommand
     {
-        ICommandResult Tratar(T command);
+        IResultadoCommand Tratar(T command);
     }
 }

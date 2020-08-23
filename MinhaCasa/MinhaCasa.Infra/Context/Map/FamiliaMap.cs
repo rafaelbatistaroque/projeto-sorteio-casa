@@ -11,14 +11,20 @@ namespace MinhaCasa.Infra.Context.Map
             montar.ToTable("Familia");
 
             montar.HasKey(x => x.Id);
-            montar.Property(x => x.Pontuacao).HasMaxLength(2).HasDefaultValue(0);
-            montar.Property(x => x.QuantidadeCriteriosAtendidos).HasDefaultValue(0).HasColumnType("SMALLINT");
-            montar.Property(x => x.CategoriaDependente).HasColumnType("SMALLINT");
-            montar.Property(x => x.CategoriaIdadePretendente).HasColumnType("SMALLINT");
-            montar.Property(x => x.CategoriaRenda).HasColumnType("SMALLINT");
+            //montar.Property(x => x.Pontuacao).HasMaxLength(2).HasDefaultValue(0);
+            //montar.Property(x => x.QuantidadeCriteriosAtendidos).HasDefaultValue(0).HasColumnType("SMALLINT");
+            //montar.Property(x => x.CategoriaDependente).HasColumnType("SMALLINT");
+            //montar.Property(x => x.CategoriaIdadePretendente).HasColumnType("SMALLINT");
+            //montar.Property(x => x.CategoriaRenda).HasColumnType("SMALLINT");
+            //montar.HasMany(x => x.Pessoas).WithOne(p => p.Familia).HasForeignKey(p => p.FamiliaId);
+            //montar.HasMany(x => x.ProcessosSelecao).WithOne(p => p.Familia).HasForeignKey(p => p.FamiliaId);
 
-            montar.HasMany(x => x.Pessoas).WithOne(p => p.Familia).HasForeignKey(p => p.FamiliaId);
-            montar.HasMany(x => x.ProcessosSelecao).WithOne(p => p.Familia).HasForeignKey(p => p.FamiliaId);
+            //var d = montar.Metadata.FindNavigation(nameof(Familia.Pessoas));
+            //var p = montar.Metadata.FindNavigation(nameof(Familia.ProcessosSelecao));
+
+            //d.SetPropertyAccessMode(PropertyAccessMode.Property);
+            //p.SetPropertyAccessMode(PropertyAccessMode.Property);
+
         }
     }
 }

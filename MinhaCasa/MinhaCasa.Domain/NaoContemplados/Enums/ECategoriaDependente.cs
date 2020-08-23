@@ -2,7 +2,7 @@
 {
     public enum ECategoriaDependente
     {
-        TresOuMais = 0,
-        UmOuDois = 1
+        UmOuDois = 0,
+        TresOuMais = 1
     }
 }

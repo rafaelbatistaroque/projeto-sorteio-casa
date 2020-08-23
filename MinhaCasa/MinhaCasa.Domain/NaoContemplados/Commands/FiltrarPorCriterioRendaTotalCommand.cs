@@ -6,7 +6,7 @@ using System;
 
 namespace MinhaCasa.Domain.NaoContemplados.Commands
 {
-    public class FiltrarPorCriterioRendaTotalCommand : Notifiable, ICommandBase
+    public class FiltrarPorCriterioRendaTotalCommand : Notifiable, IBaseCommand
     {
         public Guid Id { get; set; }
         public decimal RendaTotal { get; set; }

@@ -12,17 +12,22 @@ namespace MinhaCasa.Domain.NaoContemplados.Entities
         public Renda Renda { get; private set; }
         public Guid FamiliaId { get; private set; }
 
-        public virtual Familia Familia { get; private set; }
+        public Familia Familia { get; private set; }
 
-        private Pessoa() { }
+        protected Pessoa() { }
 
-        public Pessoa(string nome, ETipoVinculoFamiliar tipoVinculoFamiliar, DateTime dataNascimento, Renda renda, Guid familiaId)
+        public Pessoa(string nome, ETipoVinculoFamiliar tipoVinculoFamiliar, DateTime dataNascimento, decimal renda, Guid familiaId)
         {
             Nome = nome;
             TipoVinculoFamiliar = tipoVinculoFamiliar;
             DataNascimento = dataNascimento;
-            Renda = renda;
+            Renda = new Renda(renda);
             FamiliaId = familiaId;
+        }
+
+        public void AtualizarRenda(decimal renda)
+        {
+            new Renda(renda);
         }
     }
 }

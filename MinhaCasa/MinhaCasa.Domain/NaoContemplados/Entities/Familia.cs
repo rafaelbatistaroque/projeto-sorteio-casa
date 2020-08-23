@@ -1,14 +1,15 @@
 ﻿using MinhaCasa.Domain.Enums;
+using MinhaCasa.Domain.NaoContemplados.Commands;
 using MinhaCasa.Domain.NaoContemplados.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MinhaCasa.Domain.NaoContemplados.Entities
 {
-    public class Familia : Entity, IAggregateRoot
+    public class Familia : Entity, IRoot
     {
-        private readonly IList<Pessoa> _pessoas;
-        private readonly IList<ProcessosSelecao> _processoSelecao;
+        private readonly List<Pessoa> _pessoas;
+        private readonly List<ProcessosSelecao> _processoSelecao;
 
         public int Pontuacao { get; private set; }
         public int QuantidadeCriteriosAtendidos { get; private set; }
@@ -18,19 +19,46 @@ namespace MinhaCasa.Domain.NaoContemplados.Entities
         public ECategoriaIdadePretendente CategoriaIdadePretendente { get; private set; }
         public EStatusFamilia Status { get; private set; }
 
-        public virtual IReadOnlyCollection<Pessoa> Pessoas => _pessoas.ToArray();
-        public virtual IReadOnlyCollection<ProcessosSelecao> ProcessosSelecao => _processoSelecao.ToArray();
-
-        public Familia(EStatusFamilia status, int pontuacao, int quantidadeCriteriosAtendidos, ECategoriaRenda categoriaRenda, ECategoriaIdadePretendente categoriaIdadePretendente, ECategoriaDependente categoriaDependente)
+        public IReadOnlyCollection<Pessoa> Pessoas => _pessoas.ToHashSet();
+        public IReadOnlyCollection<ProcessosSelecao> ProcessosSelecao => _processoSelecao.ToHashSet();
+        
+        public Familia(EStatusFamilia status, ECategoriaRenda categoriaRenda)
         {
             Status = status;
-            Pontuacao = pontuacao;
-            QuantidadeCriteriosAtendidos = quantidadeCriteriosAtendidos;
             CategoriaRenda = categoriaRenda;
+            _pessoas ??= new List<Pessoa>();
+            _processoSelecao ??= new List<ProcessosSelecao>();
+        }
+
+        public Familia(EStatusFamilia status, ECategoriaRenda categoriaRenda, ECategoriaIdadePretendente categoriaIdadePretendente)
+            : this(status, categoriaRenda)
+        {
             CategoriaIdadePretendente = categoriaIdadePretendente;
+            _pessoas ??= new List<Pessoa>();
+            _processoSelecao ??= new List<ProcessosSelecao>();
+        }
+
+        public Familia(EStatusFamilia status, ECategoriaRenda categoriaRenda, ECategoriaDependente categoriaDependente)
+            : this(status, categoriaRenda)
+        {
             CategoriaDependente = categoriaDependente;
-            _pessoas = new List<Pessoa>();
-            _processoSelecao = new List<ProcessosSelecao>();
+            _pessoas ??= new List<Pessoa>();
+            _processoSelecao ??= new List<ProcessosSelecao>();
+        }
+
+        public void AtualizarCategoriaDependente(ECategoriaDependente novoValor)
+        {
+            CategoriaDependente = novoValor;
+        }
+
+        public void AtualizarCategoriaPretendente(ECategoriaIdadePretendente novoValor)
+        {
+            CategoriaIdadePretendente = novoValor;
+        }
+
+        public void AtualizarCategoriaRenda(ECategoriaRenda novoValor)
+        {
+            CategoriaRenda = novoValor;
         }
 
         public void AdicionarPontuacao(int pontuacao)

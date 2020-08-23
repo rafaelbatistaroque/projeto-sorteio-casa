@@ -11,9 +11,9 @@ namespace MinhaCasa.Infra.Context
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<ProcessosSelecao> ProcessosSelecao { get; set; }
 
-        public virtual DbSet<Renda> Rendas { get; set; }
+        public DataContext(DbContextOptions options) : base(options){
 
-        public DataContext(DbContextOptions options) : base(options) { }
+        }
 
         protected override void OnModelCreating(ModelBuilder montarModel)
         {

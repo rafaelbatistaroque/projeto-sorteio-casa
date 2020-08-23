@@ -9,7 +9,7 @@ namespace MinhaCasa.Domain.NaoContemplados.Queries
     {
         public static Expression<Func<Familia, bool>> ObterFamiliasAptasParaSelecao()
         {
-            return familia => familia.Status == EStatusFamilia.CadastroValido && familia.ProcessosSelecao.Count == 1;
+            return familia => familia.Status == EStatusFamilia.CadastroValido && familia.ProcessosSelecao.Count == 0;
         }
     }
 }
